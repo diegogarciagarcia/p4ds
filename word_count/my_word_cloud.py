@@ -8,8 +8,11 @@ Created on Wed Jan 24 20:33:12 2018
 #import
 import collections
 import io
+import os.path
 
-f = io.open("98-0.txt", mode="r", encoding="utf-8")
+my_path = os.path.abspath(os.path.dirname(__file__))
+
+f = io.open(my_path+"/98-0.txt", mode="r", encoding="utf-8")
 #file=open("98-0.txt","r")
 #file=open("mytxt.txt")
 print("empiezo")
