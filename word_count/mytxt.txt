@@ -1,0 +1,6 @@
+esto es my fichero de prueba
+con varias lineas
+linea 3 
+linea 4
+555
+linea 6
