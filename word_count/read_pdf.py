@@ -7,7 +7,7 @@ Created on Mon Feb 12 15:57:24 2018
 
 ##Step 1: Import all libraries:
 
-import PyPDF2 
+import PyPDF2
 import textract
 from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
@@ -16,7 +16,7 @@ from nltk.corpus import stopwords
 
 #write a for-loop to open many files -- leave a comment if you'd #like to learn how
 filepath = 'enter the path of the file here'
-filename = 'enter the name of the file here' 
+filename = 'enter the name of the file here'
 fileurl = filepath + filename
 #open allows you to read the file
 pdfFileObj = open(filename,'rb')
