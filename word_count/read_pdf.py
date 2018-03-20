@@ -8,18 +8,21 @@ Created on Mon Feb 12 15:57:24 2018
 ##Step 1: Import all libraries:
 
 import PyPDF2
-import textract
+#import textract #textract needed to extract text from scaned/images pdf, not ported to Windows
 from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
+from tika import parser
+
+
 
 ##Step 2: Read PDF File
 
 #write a for-loop to open many files -- leave a comment if you'd #like to learn how
-filepath = 'enter the path of the file here'
-filename = 'enter the name of the file here'
-fileurl = filepath + filename
+filepath = 'C:/Users/dgarciagarci/Google Drive/Headhunting/Oportunidades/job descriptions'
+filename = '201803 - JobDes - Head of Demand Generation AWS EMEA _ Amazon Web Services _ LinkedIn.pdf'
+fileurl = filepath +"/"+ filename
 #open allows you to read the file
-pdfFileObj = open(filename,'rb')
+pdfFileObj = open(fileurl,'rb')
 #The pdfReader variable is a readable object that will be parsed
 pdfReader = PyPDF2.PdfFileReader(pdfFileObj)
 #discerning the number of pages will allow us to parse through all #the pages
@@ -31,12 +34,19 @@ while count < num_pages:
     pageObj = pdfReader.getPage(count)
     count +=1
     text += pageObj.extractText()
+
+print("File: "+fileurl)
+print("Num Pages:"+str(num_pages))
+print("count:"+str(count))
 #This if statement exists to check if the above library returned #words. It's done because PyPDF2 cannot read scanned files.
 if text != "":
    text = text
 #If the above returns as False, we run the OCR library textract to #convert scanned/image based PDF files into text
 else:
-   text = textract.process(fileurl, method='tesseract', language='eng')
+   #text = textract.process(fileurl, method='tesseract', language='eng') #textract not ported to Windows
+   print("PDF scanned, not text extracted by PyPDF2, need to use tika")
+   parsedPDF = parser.from_file(fileurl)
+   text=parsedPDF["content"]
 # Now we have a text variable which contains all the text derived #from our PDF file. Type print(text) to see what it contains. It #likely contains a lot of spaces, possibly junk such as '\n' etc.
 # Now, we will clean our text variable, and return it as a list of keywords.
 
